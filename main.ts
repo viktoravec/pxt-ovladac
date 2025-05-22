@@ -1,36 +1,37 @@
-let ready = false
+let ready = false;
 
 input.onButtonPressed(Button.AB, function () {
-    music.playTone(300, 500)
-    basic.showNumber(3)
-    basic.pause(300)
-    music.playTone(300, 500)
-    basic.showNumber(2)
-    basic.pause(300)
-    music.playTone(300, 500)
-    basic.showNumber(1)
-    basic.pause(300)
+    music.playTone(300, 500);
+    basic.showNumber(3);
+    basic.pause(300);
+    music.playTone(300, 500);
+    basic.showNumber(2);
+    basic.pause(300);
+    music.playTone(300, 500);
+    basic.showNumber(1);
+    basic.pause(300);
 
-    basic.showIcon(IconNames.Target)
-    music.playTone(600, 700)
-    basic.clearScreen()
+    basic.showIcon(IconNames.Target);
+    music.playTone(600, 700);
+    basic.clearScreen();
 
-    radio.on()
-    radio.setFrequencyBand(50)
-    radio.setGroup(128)
-    radio.sendString("start")
+    radio.on();
+    radio.setFrequencyBand(50);
+    radio.setGroup(128);
+    radio.sendString("start");
     ready = true
-})
+});
 
 basic.forever(function () {
     if (ready) {
-        let x = input.acceleration(Dimension.X)
-        let y = input.acceleration(Dimension.Y)
-        radio.sendString(x + "," + y)
+        let x = input.acceleration(Dimension.X);
+        let y = input.acceleration(Dimension.Y);
+        radio.sendString(x + "," + y + "," + horn + "," + park + "," + headlight);
         basic.pause(30)
     }
-})
+});
 
+let horn: number = 0
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     basic.showLeds(`
     . # # # .
@@ -38,19 +39,31 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     . # # # .
     . . . . .
     . # # # .
-    `)
-    radio.sendNumber(6057)
-    basic.pause(1000)
+    `);
+    horn = 1;
+    basic.pause(50);
+    horn = 0;
+    basic.pause(950);
     basic.clearScreen()
-})
+});
 
+let headlight: number = 0
 input.onButtonPressed(Button.A, function () {
-    
-})
-
-input.onButtonPressed(Button.B, function () {
-    radio.sendString("park");
-    basic.showString("P");
-    basic.pause(1000);
+    basic.showString("L");
+    headlight = 1;
+    basic.pause(50);
+    headlight = 0;
+    basic.pause(950);
     basic.clearScreen()
-})
+});
+
+let park: number = 0
+input.onButtonPressed(Button.B, function () {
+    basic.showString("P");
+    park = 1;
+    basic.pause(50);
+    park = 0;
+    basic.pause(950);
+    basic.clearScreen()
+});
+
