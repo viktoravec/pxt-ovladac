@@ -26,7 +26,8 @@ basic.forever(function () {
     if (ready) {
         let x = input.acceleration(Dimension.X);
         let y = input.acceleration(Dimension.Y);
-        radio.sendString(x + "," + y + "," + horn + "," + park + "," + headlight);
+        radio.sendString(x + "," + y + "," + horn + "," + park + "," + autoDrive);
+        console.log(autoDrive)
         basic.pause(30)
     }
 });
@@ -47,12 +48,12 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     basic.clearScreen()
 });
 
-let headlight: number = 0
+let autoDrive: number = 0
 input.onButtonPressed(Button.A, function () {
-    basic.showString("L");
-    headlight = 1;
+    basic.showString("A");
+    autoDrive = 1;
     basic.pause(50);
-    headlight = 0;
+    autoDrive = 0;
     basic.pause(950);
     basic.clearScreen()
 });
@@ -66,4 +67,3 @@ input.onButtonPressed(Button.B, function () {
     basic.pause(950);
     basic.clearScreen()
 });
-
