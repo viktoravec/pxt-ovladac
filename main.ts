@@ -67,4 +67,3 @@ input.onButtonPressed(Button.B, function () {
     basic.pause(950);
     basic.clearScreen()
 });
-
