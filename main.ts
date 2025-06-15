@@ -27,7 +27,6 @@ basic.forever(function () {
         let x = input.acceleration(Dimension.X);
         let y = input.acceleration(Dimension.Y);
         radio.sendString(x + "," + y + "," + horn + "," + park + "," + autoDrive);
-        console.log(x + "," + y + "," + horn + "," + park + "," + autoDrive)
         basic.pause(30)
     }
 });
@@ -67,3 +66,4 @@ input.onButtonPressed(Button.B, function () {
     basic.pause(950);
     basic.clearScreen()
 });
+
